@@ -6,25 +6,71 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>SimepleDA</title>
   <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/module.css">
+  <script src="https://kit.fontawesome.com/16eac9473c.js" crossorigin="anonymous"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 </head>
 
 <body>
-  <section class="title">
-    <p id="title-text">SimpleDA</p>
-  </section>
-  <section class="gamefield">
-    <p id="target">click to start</p>
-    <p class="info">
-      Letter count: <span id="score">0</span>
-      Miss count: <span id="miss">0</span>
-      Time left: <span id="timer">0.00</span>
-    </p>
+  <header>
+    <div class="title">
+      <p id="title-text">SimpleDA</p>
+    </div>
+    <div class="header-right">
+      <i id="header-bars-icon" class="fas fa-bars"></i>
+      <ul>
+        <li id="setting-btn">設定</li>
+        <li id="usage-btn">使い方</li>
+        <li><a href="https://github.com/harumaky/SimpleDA" target="__blank">GitHub</a></li>
+      </ul>
+    </div>
+  </header>
+
+  <!-- 設定、使い方モジュール -->
+  <div class="from-top-screen" id="setting-screen">
+    <div class="full-screen">
+      <div class="close-btn">
+        <i class="fas fa-times fa-2x"></i>
+      </div>
+      <div class="screen-content">
+        <h2>設定</h2>
+      </div>
+    </div>
+  </div>
+  <div class="from-top-screen" id="usage-screen">
+    <div class="full-screen">
+      <div class="close-btn">
+        <i class="fas fa-times fa-2x"></i>
+      </div>
+      <div class="screen-content">
+        <h2>SimpleDAへようこそ！</h2>
+        <p>SimpleDAは、シンプルさを重視したタイピングゲームサイトです</p>
+        <h3>使い方</h3>
+        <p>ゲーム画面（背景グレー）をクリックするとスタートします</p>
+        <p>デフォルトでは、単語はランダムな英単語、制限時間は60秒です</p>
+        <p><del>制限時間は設定から変更することができます</del></p>
+        <p>設定は現在準備中です</p>
+
+      </div>
+    </div>
+  </div>
+
+  <section id="gamefield">
+    <p id="target">クリックでスタート</p>
+    <div class="info">
+      <p class="info-content">正しく打った文字数: <span id="letter">0</span></p>
+      <p class="info-content">ミス: <span id="miss">0</span></p>
+      <p class="info-content">残り時間: <span id="timer">0.00</span></p>
+    </div>
+    
   </section>
   
 
 
 
-
+  <script src="js/words.js"></script>
   <script src="js/main.js"></script>
+  <script src="js/settings.js"></script>
+  <script src="js/motion.js"></script>
 </body>
 </html>

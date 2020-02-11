@@ -1,24 +1,97 @@
+/* global */
 body {
-  font-family: 'Courier New', monospace;
   text-align: center;
+  font-family: 'ヒラギノ丸ゴ ProN','Hiragino Maru Gothic ProN','ＭＳ ゴシック','Courier',monospace;
   font-size: 16px;
+  letter-spacing: .07rem;
   user-select: none;
   margin: 0;
+  height: 10000px;
+  box-sizing: border-box;
+  
 }
-.title {
+li {
+  list-style-type: none;
+}
+a {
+  text-decoration: none;
+  color: #6495ed;
+}
+a:hover {
+  opacity: 0.6;
+}
+
+
+/* header */
+header {
   width: 100%;
   height: 65px;
   background-color: #8cd790;
-  text-align: center;
+  color: #454545;
 }
 #title-text {
-  font-size: 2rem;
+  font-size: 1.4rem;
   margin: 0;
+  padding: 0 20px;
   line-height: 65px;
+  float: left;
+}
+.header-right {
+  float: right;
+  margin: 0 20px;
+  height: 100%;
+}
+.header-right li {
+  float: left;
+  padding: 5px 10px;
+  cursor: pointer;
+}
+.header-right li:hover {
+  opacity: 0.6;
+}
+header a {
+  color: #454545;
+}
+#header-bars-icon {
+  display: none;
 }
 
 
+/* full-screen module*/
+.from-top-screen {
+  display: none;
+}
+.full-screen {
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  background-color: rgba(250,250,250 ,.9);
+  z-index: 10;
+  text-align: center;
+}
+.close-btn {
+  margin: 10px 40px 0 0;
+  width: 30px;
+  height: 30px;
+  float: right;
+  cursor: pointer;
+}
+.close-btn:hover {
+  opacity: 0.6;
+}
+.screen-content {
+  width: 80%;
+  margin: 0 auto;
+}
 
+
+/* game(main) */
+#gamefield {
+  width: 95%;
+  margin: 10px auto;
+  padding: 10px 0 100px;
+  background-color: #e9e9e9;
+}
 
 #target {
   font-size: 3rem;
@@ -26,5 +99,14 @@ body {
 }
 
 .info {
-  color: #ccc;
+  display: flex;
+  width: 90%;
+  margin: 0 auto;
+  justify-content: center;
+  
+}
+.info-content{
+  color: #757575;
+  display: inline-block;
+  margin: 0 10px;
 }

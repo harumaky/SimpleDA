@@ -1,23 +1,17 @@
 'use strict';
 
 {
-  const words = [
-    'apple',
-    'sky',
-    'blue',
-    'middle',
-    'set'
-  ];
   let word;
   let loc; //location
-  let score;
+  let letter;
   let miss;
-  const timeLimit = 3 * 1000; //ms
+  let timeLimitSet = 10; //s
+  const timeLimit = timeLimitSet * 1000; //ms
   let startTime;
   let isPlaying = false;
 
   const target = document.getElementById('target');
-  const scoreLabel = document.getElementById('score');
+  const letterLabel = document.getElementById('letter');
   const missLabel = document.getElementById('miss');
   const timerLabel = document.getElementById('timer');
 
@@ -49,19 +43,19 @@
         showResult();
         //alertの処理が終わるまで、画面描写処理をブロックする > 0.00になる前にアラートが先にでてしまうから、処理を遅らせる
       }, 100);
-      target.textContent = 'click to replay';
+      target.textContent = 'クリックで再スタート';
     }
 
   }
 
   function showResult() {
-    const accuracy = score + miss === 0 ? 0 : score / (score + miss) * 100
-    alert(`${score} letters, ${miss} misses, ${accuracy.toFixed(2)}% accuracy!`);
+    const accuracy = letter + miss === 0 ? 0 : letter / (letter + miss) * 100
+    alert(`正確に${letter}文字タイプ, ${miss}ミス, 正確さ${accuracy.toFixed(2)}%`);
   }
 
 
   // プレイ開始
-  window.addEventListener('click', () => {
+  document.getElementById('gamefield').addEventListener('click', () => {
     if (isPlaying) {
       return;
       //既にプレイしているときは以下を実行しない
@@ -69,11 +63,11 @@
     isPlaying = true;
 
     loc = 0;
-    score = 0;
+    letter = 0;
     miss = 0;
-    scoreLabel.textContent = score;
+    letterLabel.textContent = letter;
     missLabel.textContent = miss;
-    word = words[Math.floor(Math.random() * words.length)];
+    word = defaultWords[Math.floor(Math.random() * defaultWords.length)];
 
     target.textContent = word;
     startTime = Date.now();
@@ -92,16 +86,16 @@
       //例えば、0文字目からスタートで2文字目を正解したら、現在位置を3にする
       loc++;
       if (loc === word.length) {
-        word = words[Math.floor(Math.random() * words.length)];
+        word = defaultWords[Math.floor(Math.random() * defaultWords.length)];
         loc = 0;
       }
       updateTarget();
-      score++;
-      scoreLabel.textContent = score;
+      letter++;
+      letterLabel.textContent = letter;
     } else {
       miss++;
       missLabel.textContent = miss;
     }
   });
-
 }
+
