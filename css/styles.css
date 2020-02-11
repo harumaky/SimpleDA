@@ -6,9 +6,8 @@ body {
   letter-spacing: .07rem;
   user-select: none;
   margin: 0;
-  height: 10000px;
   box-sizing: border-box;
-  
+  /* スクロールできる高さにしない！ spaceキーのスクロールを無効にする方法模索中*/
 }
 li {
   list-style-type: none;
@@ -61,6 +60,7 @@ header a {
 .from-top-screen {
   display: none;
 }
+
 .full-screen {
   width: 100vw;
   height: 100vh;
@@ -83,6 +83,7 @@ header a {
   width: 80%;
   margin: 0 auto;
 }
+
 
 
 /* game(main) */

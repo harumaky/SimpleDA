@@ -5,8 +5,7 @@
   let loc; //location
   let letter;
   let miss;
-  let timeLimitSet = 10; //s
-  const timeLimit = timeLimitSet * 1000; //ms
+  let timeLimit;
   let startTime;
   let isPlaying = false;
 
@@ -26,6 +25,7 @@
     target.textContent = placeholder + word.substring(loc);
     // 部分文字列を取得するsubstringで、3番目から最後までを表示する
   }
+
   function updateTimer() {
     const timeLeft = startTime + timeLimit - Date.now();
     timerLabel.textContent = (timeLeft / 1000).toFixed(2);
@@ -39,7 +39,6 @@
       clearTimeout(timeoutId);
       timerLabel.textContent = '0.00';
       setTimeout(() => {
-        // alert('Game Over');
         showResult();
         //alertの処理が終わるまで、画面描写処理をブロックする > 0.00になる前にアラートが先にでてしまうから、処理を遅らせる
       }, 100);
@@ -61,6 +60,7 @@
       //既にプレイしているときは以下を実行しない
     }
     isPlaying = true;
+    timeLimit = userTimeLimit * 1000
 
     loc = 0;
     letter = 0;

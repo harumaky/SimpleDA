@@ -50,7 +50,7 @@ $(document).ready(function() {
   // ゲーム開始時
   $('#gamefield').click(function() {
     $('body').css('height', '100px');
-    //tabキーなどによるスクロールもこれでなくなる
+    //これだとだめ！
   });
 
 });

@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>SimepleDA</title>
   <link rel="stylesheet" href="css/styles.css">
-  <link rel="stylesheet" href="css/module.css">
+  <link rel="stylesheet" href="css/settings.css">
   <script src="https://kit.fontawesome.com/16eac9473c.js" crossorigin="anonymous"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 </head>
@@ -34,6 +34,12 @@
       </div>
       <div class="screen-content">
         <h2>設定</h2>
+        <div class="set-limit">
+          <span class="set-label">制限時間</span>
+          <input type="range" value="6" min="10" max="180" step="10" oninput="document.getElementById('time-limit').value=this.value">
+  
+          <span id="limit-text"><output id="time-limit">10</output>s</span>
+        </div>
       </div>
     </div>
   </div>
@@ -47,9 +53,9 @@
         <p>SimpleDAは、シンプルさを重視したタイピングゲームサイトです</p>
         <h3>使い方</h3>
         <p>ゲーム画面（背景グレー）をクリックするとスタートします</p>
-        <p>デフォルトでは、単語はランダムな英単語、制限時間は60秒です</p>
-        <p><del>制限時間は設定から変更することができます</del></p>
-        <p>設定は現在準備中です</p>
+        <p>デフォルトでは、入力するのはランダムな英単語、制限時間は60秒です</p>
+        <p>制限時間は設定から変更することができます</p>
+        
 
       </div>
     </div>
@@ -69,8 +75,8 @@
 
 
   <script src="js/words.js"></script>
-  <script src="js/main.js"></script>
   <script src="js/settings.js"></script>
+  <script src="js/main.js"></script>
   <script src="js/motion.js"></script>
 </body>
 </html>
