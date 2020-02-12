@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>SimepleDA</title>
+  <title>Simeple打</title>
   <link rel="stylesheet" href="css/styles.css">
   <link rel="stylesheet" href="css/settings.css">
   <script src="https://kit.fontawesome.com/16eac9473c.js" crossorigin="anonymous"></script>
@@ -14,13 +14,13 @@
 <body>
   <header>
     <div class="title">
-      <p id="title-text">SimpleDA</p>
+      <p id="title-text">Simple打</p>
     </div>
     <div class="header-right">
       <i id="header-bars-icon" class="fas fa-bars"></i>
       <ul>
         <li id="setting-btn">設定</li>
-        <li id="usage-btn">使い方</li>
+        <li id="usage-btn">使い方・情報</li>
         <li><a href="https://github.com/harumaky/SimpleDA" target="__blank">GitHub</a></li>
       </ul>
     </div>
@@ -37,7 +37,7 @@
         <span class="set-label">制限時間</span>
         <input type="range" value="6" min="10" max="180" step="10" oninput="document.getElementById('time-limit').value=this.value">
   
-        <span id="limit-text"><output id="time-limit">10</output>s</span>
+        <span id="limit-text"><output id="time-limit">10</output>秒</span>
       </div>
     </div>
   </div>
@@ -47,12 +47,16 @@
       <i class="fas fa-times fa-2x"></i>
     </div>
     <div class="screen-content">
-      <h2>SimpleDAへようこそ！</h2>
-      <p>SimpleDAは、シンプルさを重視したタイピングゲームサイトです</p>
+      <h2>Simple打へようこそ！</h2>
+      <p>Simple打は、シンプルさを重視したタイピングゲームサイトです</p>
       <h3>使い方</h3>
       <p>ゲーム画面（グレーの背景）をクリックするとスタートします</p>
-      <p>デフォルトでは、入力するのはランダムな英単語、制限時間は60秒です</p>
+      <p>入力するのはランダムな英単語、英熟語、制限時間は60秒です</p>
       <p>制限時間は設定から変更することができます</p>
+      <h3>※</h3>
+      <p>大文字、小文字の区別があります（shiftで大文字）</p>
+      <p>WPMはWords Per Minuteの略ですが、ここではLetters Per Minuteを表します</p>
+      <p>収録英単語・イディオム数：<span id="wordsCount"></span></p>
     </div>
   </div>
   <div id="game">
@@ -72,7 +76,7 @@
         <p><span id="rank"></span></p>
       </div>
       <div id="detail-result">
-        <p>経過時間：<span id="elapsed-time"></span>秒</p>
+        <p>制限時間：<span id="elapsed-time"></span>秒</p>
         <p>正しく打った文字：<span id="correct-letters"></span></p>
         <p>ミス数：<span id="mistakes"></span></p>
         <p>正確率：<span id="accuracy"></span>％</p>

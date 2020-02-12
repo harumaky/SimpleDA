@@ -63,7 +63,7 @@
     const detailAccuracy = letters + miss === 0 ? 0 : letters / (letters + miss) * 100
     const rank = judgeRank(score);
     const accuracy = detailAccuracy.toFixed(2);
-    const wpm = letters / userTimeLimit * 60;
+    const wpm = Math.round(letters / userTimeLimit * 60);
 
     document.getElementById('score').textContent = score;
     document.getElementById('rank').textContent = rank;
@@ -89,12 +89,7 @@
     timeLimit = userTimeLimit * 1000
     //タイムリミット設定の反映
   
-    loc = 0;
-    letters = 0;
-    miss = 0;
-    lettersLabel.textContent = letters;
-    missLabel.textContent = miss;
-    word = defaultWords[Math.floor(Math.random() * defaultWords.length)];
+    
   
     target.textContent = word;
     startTime = Date.now();
@@ -105,6 +100,12 @@
   document.getElementById('gamefield').addEventListener('click', () => {
     
     let startIn = 3; //seconds
+    loc = 0;
+    letters = 0;
+    miss = 0;
+    lettersLabel.textContent = letters;
+    missLabel.textContent = miss;
+    word = defaultWords[Math.floor(Math.random() * defaultWords.length)];
     
     if (!(isStartCountDown)) {
 
