@@ -3,14 +3,14 @@
 {
   let word;
   let loc; //location
-  let letter;
+  let letters;
   let miss;
   let timeLimit;
   let startTime;
   let isPlaying = false;
 
   const target = document.getElementById('target');
-  const letterLabel = document.getElementById('letter');
+  const lettersLabel = document.getElementById('letters');
   const missLabel = document.getElementById('miss');
   const timerLabel = document.getElementById('timer');
 
@@ -35,7 +35,6 @@
 
     //時間切れでプレイ停止
     if (timeLeft < 0) { //timeLeftはms!
-      isPlaying = false; // 再スタートを有効にする
       clearTimeout(timeoutId);
       timerLabel.textContent = '0.00';
       setTimeout(() => {
@@ -43,36 +42,77 @@
         //alertの処理が終わるまで、画面描写処理をブロックする > 0.00になる前にアラートが先にでてしまうから、処理を遅らせる
       }, 100);
       target.textContent = 'クリックで再スタート';
+      isPlaying = false; // 再スタートを有効にする
+      isStartCountDown = false; // カウントダウンを有効にする
     }
 
   }
 
+  const result = document.getElementById('result-screen')
   function showResult() {
-    const accuracy = letter + miss === 0 ? 0 : letter / (letter + miss) * 100
-    alert(`正確に${letter}文字タイプ, ${miss}ミス, 正確さ${accuracy.toFixed(2)}%`);
+    let score = Math.round((letters * 100 / userTimeLimit - miss * 3));
+    const detailAccuracy = letters + miss === 0 ? 0 : letters / (letters + miss) * 100
+    const rank = judgeRank(score);
+    const accuracy = detailAccuracy.toFixed(2);
+    const wpm = letters / userTimeLimit * 60;
+
+    document.getElementById('score').textContent = score;
+    document.getElementById('rank').textContent = rank;
+    document.getElementById('elapsed-time').textContent = userTimeLimit;
+    document.getElementById('correct-letters').textContent = letters;
+    document.getElementById('mistakes').textContent = miss;
+    document.getElementById('accuracy').textContent = accuracy;
+    document.getElementById('wpm').textContent = wpm;
+
+    result.style.display = 'block';
+    result.style.opacity = 1;
   }
 
 
   // プレイ開始
-  document.getElementById('gamefield').addEventListener('click', () => {
+  const startGame = () => {
     if (isPlaying) {
       return;
       //既にプレイしているときは以下を実行しない
-    }
+      }
     isPlaying = true;
+      
     timeLimit = userTimeLimit * 1000
-
+    //タイムリミット設定の反映
+  
     loc = 0;
-    letter = 0;
+    letters = 0;
     miss = 0;
-    letterLabel.textContent = letter;
+    lettersLabel.textContent = letters;
     missLabel.textContent = miss;
     word = defaultWords[Math.floor(Math.random() * defaultWords.length)];
-
+  
     target.textContent = word;
     startTime = Date.now();
-    updateTimer();
-  });
+      updateTimer();
+  }
+  //clickしたとき
+  let isStartCountDown = false;
+  document.getElementById('gamefield').addEventListener('click', () => {
+    
+    let startIn = 3; //seconds
+    
+    if (!(isStartCountDown)) {
+
+      isStartCountDown = true;
+
+      const countDown = setInterval(() => {
+        if (startIn > 0) {
+          target.textContent = startIn;
+          startIn--;
+        } else {
+          startGame();
+          clearInterval(countDown);
+        }
+      }, 1000);
+    }
+
+    });
 
 
   //プレイ中
@@ -80,7 +120,6 @@
     if (!(isPlaying)) {
       return;
     }
-    console.log(e.key);
     if (e.key === word[loc]) {
 
       //例えば、0文字目からスタートで2文字目を正解したら、現在位置を3にする
@@ -90,8 +129,8 @@
         loc = 0;
       }
       updateTarget();
-      letter++;
-      letterLabel.textContent = letter;
+      letters++;
+      lettersLabel.textContent = letters;
     } else {
       miss++;
       missLabel.textContent = miss;

@@ -26,31 +26,54 @@ $(document).ready(function() {
   $('#setting-btn').click(function() {
     if (isOpen) {
       $('.from-top-screen').hide();
-    } //既に開いてたら一度全て閉じる
+      //既に開いてたら一度全て閉じる
+      $('#setting-screen').show();
+      return;
+    } 
+
     isOpen = true;
-    $('#setting-screen').toggle(200);
+    $('#setting-screen').slideToggle(200);
     no_scroll();
   });
 
   $('#usage-btn').click(function() {
     if (isOpen) {
       $('.from-top-screen').hide();
+      $('#usage-screen').show();
+      return;
     }
     isOpen = true;
-    $('#usage-screen').toggle(200);
+    $('#usage-screen').slideToggle(200);
     no_scroll();
   });
 
   $('.close-btn').click(function() {
-    $('.from-top-screen').hide(200);
+    $('.from-top-screen').slideUp(200);
     return_scroll();
+    isOpen = false;
   });
   //ヘッダーモジュール終了
 
   // ゲーム開始時
   $('#gamefield').click(function() {
-    $('body').css('height', '100px');
+    // $('body').css('height', '100px');
     //これだとだめ！
+    $('#show-result-btn').hide();
   });
+
+  //スコア画面
+  $('#close-result-btn').click(function() {
+    $('#result-screen').animate({opacity : 0}, 500, function(){
+      $(this).css('display', 'none');
+    });
+    $('#show-result-btn').show();
+  });
+
+  $('#show-result-btn').click(function() {
+    $('#result-screen').animate({opacity : 1}, 500, function(){
+      $(this).css('display', 'block');
+    });
+  });
+
 
 });
