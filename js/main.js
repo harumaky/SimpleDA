@@ -14,6 +14,8 @@
   const missLabel = document.getElementById('miss');
   const timerLabel = document.getElementById('timer');
 
+  const body = document.querySelector('body');
+
 
   function updateTarget() {
     let placeholder = '';
@@ -37,6 +39,13 @@
     if (timeLeft < 0) { //timeLeftはms!
       clearTimeout(timeoutId);
       timerLabel.textContent = '0.00';
+
+      //clickなどを可能にし、リストの半透明化解除
+      body.style.pointerEvents = 'auto';
+      document.querySelectorAll('.header-right li').forEach((li) => {
+        li.style.opacity = 1;
+      });
+
       setTimeout(() => {
         showResult();
         //alertの処理が終わるまで、画面描写処理をブロックする > 0.00になる前にアラートが先にでてしまうから、処理を遅らせる

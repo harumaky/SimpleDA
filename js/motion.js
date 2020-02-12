@@ -59,6 +59,9 @@ $(document).ready(function() {
     // $('body').css('height', '100px');
     //これだとだめ！
     $('#show-result-btn').hide();
+    
+    $('body').css('pointer-events', 'none');
+    $('.header-right li').css('opacity', 0.4);
   });
 
   //スコア画面
